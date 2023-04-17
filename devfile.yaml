@@ -8,6 +8,6 @@ components:
   - name: devtools
     container:
       # image: quay.io/devfile/universal-developer-image:ubi8-latest
-      image: quay.io/brboett/ocp-test:latest
+      image: docker.io/brboettcher/ocp-test:latest
       memoryLimit: 2Gi
       memoryRequest: 256Mi
