@@ -1,67 +1,158 @@
-# Quarkus API example
-[![Contribute](https://www.eclipse.org/che/contribute.svg)](https://workspaces.openshift.com#https://github.com/che-incubator/quarkus-api-example)
-[![Contribute (nightly)](https://img.shields.io/static/v1?label=nightly%20Che&message=for%20maintainers&logo=eclipseche&color=FDB940&labelColor=525C86)](https://che-dogfooding.apps.che-dev.x6e0.p1.openshiftapps.com#https://github.com/che-incubator/quarkus-api-example&storageType=persistent)
+# Developer Images
 
-Quarkus REST API with Hibernate ORM, Panache, RESTEasy, and PostgreSQL. Requires JDK 11.
+[![Build of UBI 8 based Developer Images](https://github.com/devfile/developer-images/actions/workflows/ubi8-build.yaml/badge.svg)](https://github.com/devfile/developer-images/actions/workflows/ubi8-build.yaml)
 
-NOTE: Perfoming a native Quarkus build with the `packagenative` command fails on [Eclipse Che Hosted by Red Hat](https://www.eclipse.org/che/docs/che-7/hosted-che/hosted-che) due to the 7GB usage limit.
+Containers images with tools for developers 👨‍💻👩‍💻
 
-## Endpoints
-| Method | Endpoint                            | Description                                                |
-|--------|-------------------------------------|------------------------------------------------------------|
-| `GET`  | `/food`                             | Lists all Food resources                                   |
-| `GET`  | `/food/{id}`                        | Retrieves the Food resource with the specified ID          |
-| `GET`  | `/food/search/{name}`               | Retrieves a Food resource with the specified name          |
-| `GET`  | `/food/restaurant/{restaurantName}` | Lists all Food resources with the specified restaurantName |
-| `POST` | `/food`                             | Creates a Food resource                                    |
+## Developer Base Image
 
-## Running within Dev Spaces
+### Red Hat Universal Base Image ([UBI](https://developers.redhat.com/articles/ubi-faq#)) based image ([quay.io/devfile/base-developer-image:ubi8-latest](https://quay.io/repository/devfile/base-developer-image))
 
-### Run in development mode
+Run the following command to test it with Docker:
+
+```bash
+$ docker run -ti --rm \
+       quay.io/devfile/base-developer-image:ubi8-latest \
+       bash
 ```
-./mvnw compile quarkus:dev
-```
-Navigate to `localhost:8080/food` to view the [pre-imported](https://github.com/che-incubator/quarkus-api-example/blob/main/src/main/resources/import.sql) `Food` resources.
+### Included Developement Tools
 
+| Tool                | ubi8 based image                    |
+|---------------------|-------------------------------------|
+| `bash`              |`bash`                               |
+| `bat`               |`<gh releases>`                      |
+| `curl`              |`curl`                               |
+| `ps`                |`ps`                                 |
+| `diff`              |`diffutils`                          |
+| `emacs`             |`NOT AVAILABLE (fedora only)`        |
+| `fish`              |`NOT AVAILABLE (fedora only)`        |
+| `gh`                |`<gh releases>`                      |
+| `git`               |`git`                                |
+| `git-lfs`           |`git-lfs`                            |
+| `ip`                |`iproute`                            |
+| `jq`                |`jq`                                 |
+| `htop`              |`NOT AVAILABLE (fedora only)`        |
+| `less`              |`less`                               |
+| `lsof`              |`lsof`                               |
+| `man`               |`man`                                |
+| `nano`              |`nano`                               |
+| `netcat`            |`NOT AVAILABLE`                      |
+| `netstat`           |`net-tools`                          |
+| `openssh-client`    |`openssh-clients`                    |
+| `7z`                |`p7zip-plugins`                      |
+| `ripgrep`           |`<gh releases>`                      |
+| `rsync`             |`rsync`                              |
+| `scp`               |`openssh-clients`                    |
+| `screen`            |`NOT AVAILABLE`                      |
+| `sed`               |`sed`                                |
+| `shasum`            |`perl-Digest-SHA`                    |
+| `socat`             |`socat`                              |
+| `sudo`              |`sudo`                               |
+| `ss`                |`NOT AVAILABLE`                      |
+| `ssl-cert`          |`NOT AVAILABLE`                      |
+| `tail`              |`<built in>`                         |
+| `tar`               |`tar`                                |
+| `time`              |`time`                               |
+| `tldr`              |`NOT AVAILABLE (fedora only)`        |
+| `tmux`              |`NOT AVAILABLE (fedora only)`        |
+| `vim`               |`vim`                                |
+| `wget`              |`wget`                               |
+| `zip`               |`zip`                                |
+| `zsh`               |`NOT AVAILABLE (fedora only)`        |
+| **TOTAL SIZE**      | **412MB** (143MB compressed)        |
 
-### Run tests only
-```
-./mvnw test
-```
+## Developer Universal Image
 
-### Packaging the application
-```
-./mvnw clean package
-```
+### Red Hat Universal Base Image ([UBI](https://developers.redhat.com/articles/ubi-faq#)) based image ([quay.io/devfile/universal-developer-image:ubi8-latest](https://quay.io/repository/devfile/universal-developer-image))
 
-### Building a JVM-based image
+Run the following command to test it with Docker: 
 
-To build a JVM-based image, `./mvnw clean package` but be run beforehand.
+```bash
+docker run -ti --rm \
+       quay.io/devfile/universal-developer-image:ubi8-latest \
+       bash
+```
+### Included Development Tools
 
-To build an image, run:
-```
-IMG=<IMAGE> && \
-podman build -f src/main/docker/Dockerfile.jvm -t $IMG .
-```
+| Tool or language    | ubi8 based image                    |
+|---------------------|-------------------------------------|
+|--------JAVA---------|-------------------------------------|
+| `sdk`               |`<https://get.sdkman.io>`            |
+| `java`              |`<8.0.332-tem via sdkman>`          |
+| `java`              |`<11.0.15-tem via sdkman>/default`  |
+| `java`              |`<17.0.3-tem via sdkman>`           |
+| `maven`             |`<via sdkman>`                       |
+| `gradle`            |`<via sdkman>`                       |
+| `mandrel`           |`<22.1.0.0.r17-mandrel via sdkman>`  |
+| `jbang`             |`<via sdkman>`                    |
+|--------SCALA--------|-------------------------------------|
+| `cs`                |`<https://get-coursier.io/>`         |
+| `sbt`               |`<sbt launch script>`                |
+| `mill`              |`<mill launch script>`               |
+|--------C/CPP--------|-------------------------------------|
+| `clang`             |`clang`                              |
+| `clangd`            |`llvm-toolset`                       |
+| `gdb`               |`gdb`                                |
+|--------PHP----------|-------------------------------------|
+| `php`               |`php`                                |
+| `composer`          |`https://getcomposer.org/`           |
+| `xdebug`            |`pecl`                               |
+|-------NODEJS--------|-------------------------------------|
+| `nodejs`            |`nodejs`                             |
+| `npm`               |`npm`                                |
+| `yarn`              |`<via npm>`                          |
+|--------GO-----------|-------------------------------------|
+| `go`                |`go-toolset`                         |
+| `gopls`             |`golang.org/x/tools/gopls`           |
+|--------.NET---------|-------------------------------------|
+| `dotnet`            |`dotnet-sdk-6.0`                     |
+|------PYTHON---------|-------------------------------------|
+| `python`            |`python39`                           |
+| `setuptools`        |`python39-setuptools`                |
+| `pip`               |`python39-pip`                       |
+| `pylint`            |`<via pip>`                          |
+| `yq`                |`<via pip>`                          |
+|--------RUST---------|-------------------------------------|
+| `rustup`            |`<sh.rustup.rs>`                     |
+| `rust-src`          |`<via rustup>`                       |
+| `rust-analysis`     |`<via rustup>`                       |
+|--------Platform-----|-------------------------------------|
+| `camel-k`           |`<gh release>`                       |
+|------CLOUD----------|-------------------------------------|
+| `oc`                |`mirror.openshift.com`               |
+| `podman`            |`container-tools:rhel8`              |
+| `buildah`           |`container-tools:rhel8`              |
+| `skopeo`            |`container-tools:rhel8`              |
+| `kubectl`           |`<kubernetes dnf repo>`              |
+| `krew`              |`<gh releases>`                      |
+| `helm`              |`<get.helm.sh>`                      |
+| `kustomize`         |`<gh releases>`                      |
+| `tkn`               |`<gh releases>`                      |
+| `kn`                |`<gh releases>`                      |
+| `terraform`         |`<releases.hashicorp.com>`           |
+| `docker`            |`<download.docker.com>`              |
+| `docker-compose`    |`<gh releases>`                      |
+| `kamel`            |`<gh release>`                     |
+| **TOTAL SIZE**      | **8.75GB** (3.6GB compressed)       |
 
-To build and push to the local local OpenShift registry, run the following before building:
-```
-podman login --tls-verify=false -u kubeadmin -p $(oc whoami -t) image-registry.openshift-image-registry.svc:5000 && \
-IMG=image-registry.openshift-image-registry.svc:5000/openshift/quarkus-api-example
-```
+### Included libraries
 
-### Pushing an image
-To push an image, run:
-```
-podman push $IMG
-```
+#### e2fsprogs v1.46.5
 
-To push an image to the local OpenShift registry, run:
-```
-podman push --tls-verify=false $IMG
-```
+### Environment Variables
 
-## Resources
-* https://quarkus.io/guides/maven-tooling
-* https://quarkus.io/guides/hibernate-orm-panache
-* https://quarkus.io/guides/building-native-image
+#### Java
+JAVA_HOME_8, JAVA_HOME_11, JAVA_HOME_17
+
+# Builds
+
+This repo contains [actions](https://github.com/eclipse-che/che-operator/actions), including:
+* [![release latest stable](https://github.com/devfile/developer-images/actions/workflows/ubi8-build.yaml/badge.svg)](https://github.com/devfile/developer-images/actions/workflows/ubi8-build.yaml)
+
+Downstream builds can be found at the link below, which is _internal to Red Hat_. Stable builds can be found by replacing the 3.x with a specific version like 3.2.  
+
+* [udi_3.x](https://main-jenkins-csb-crwqe.apps.ocp-c1.prod.psi.redhat.com/job/DS_CI/job/udi_3.x)
+
+# License
+
+Che is open sourced under the Eclipse Public License 2.0.
