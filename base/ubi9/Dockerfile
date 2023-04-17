@@ -20,7 +20,7 @@ LABEL io.openshift.expose-services=""
 USER 0
 
 #  Removed because of vulnerabilities: git-lfs
-RUN dnf install -y diffutils git iproute jq less lsof man nano unzip procps perl-Digest-SHA net-tools openssh-clients rsync socat sudo time vim wget zip
+RUN dnf install -y cat diffutils git iproute jq less lsof man nano unzip procps perl-Digest-SHA net-tools openssh-clients rsync socat sudo time vim wget zip
 RUN dnf update -y && dnf clean all
  
 #  Cloud Tools
