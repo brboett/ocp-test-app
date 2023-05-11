@@ -12,24 +12,9 @@ components:
     container:
       command:
         - /checode/entrypoint-volume.sh               
-#       image: dockerregistry-np.hban.us/devops/devspaces/ubi_9:1.0
-      image: docker.io/redhat/ubi8
+      image: dockerregistry-np.hban.us/devops/devspaces/ubi_9:1.0
+#     image: docker.io/redhat/ubi8
       sourceMapping: /projects
       volumeMounts:
         - name: checode
           path: /checode
-
-
-# schemaVersion: 2.1.0
-# metadata:
-#   name: ocp-test-app
-# attributes:
-#   controller.devfile.io/storage-type: ephemeral
-#   controller.devfile.io/scc: container-build
-# components:
-#   - name: devtools
-#     container:
-#       # image: quay.io/devfile/universal-developer-image:ubi8-latest
-#       image: dockerregistry-np.hban.us/devops/devspaces/ubi_9:1.0
-#       memoryLimit: 2Gi
-#       memoryRequest: 256Mi
