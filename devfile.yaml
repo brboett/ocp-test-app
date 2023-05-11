@@ -15,17 +15,7 @@ components:
      image: registry.access.redhat.com/ubi8/ubi:latest
      memoryLimit: 512M
      memoryRequest: 256M
-     mountSources: true
      command: ['sleep', 'infinity']
-     volumeMounts:
-       - name: cache
-         path: /.cache
-  - name: devspaces-cache-demo
-    volume:
-      size: 2Gi
-
-
-
 
 
 
