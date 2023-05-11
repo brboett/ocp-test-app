@@ -8,6 +8,6 @@ components:
   - name: devtools
     container:
       # image: quay.io/devfile/universal-developer-image:ubi8-latest
-      image: dockerregistry-np/devops/devspaces/sre_tools:1.2
+      image: dockerregistry-np.hban.us/devops/devspaces/sre_tools:1.2
 #       memoryLimit: 2Gi
 #       memoryRequest: 256Mi
