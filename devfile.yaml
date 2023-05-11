@@ -1,13 +1,13 @@
 schemaVersion: 2.1.0
 metadata:
   name: ocp-test-app
-# attributes:
-#   controller.devfile.io/storage-type: ephemeral
-#   controller.devfile.io/scc: container-build
-# components:
-#   - name: devtools
-#     container:
-#       # image: quay.io/devfile/universal-developer-image:ubi8-latest
-#       image: docker.io/brboettcher/ocp-test:latest
+attributes:
+  controller.devfile.io/storage-type: ephemeral
+  controller.devfile.io/scc: container-build
+components:
+  - name: devtools
+    container:
+      # image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: dockerregistry-np:16080/devops/devspaces/sre_tools:1.2
 #       memoryLimit: 2Gi
 #       memoryRequest: 256Mi
