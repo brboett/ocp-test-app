@@ -17,7 +17,11 @@ commands:
   - id: build
     exec:
       component: packages
-      commandLine: 'yum install -y tree unzip '
+      commandLine: 'yum install -y tree unzip'
+    exec:
+      component: applications
+      workingDir: "${PROJECTS_ROOT}"
+      commandLine: 'chmod +x build.sh && ./build.sh'
 
 
 # schemaVersion: 2.1.0
