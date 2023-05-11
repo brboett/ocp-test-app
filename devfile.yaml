@@ -13,7 +13,8 @@ components:
       command:
         - /checode/entrypoint-volume.sh               
 #     image: dockerregistry-np.hban.us/devops/devspaces/ubi8:1.0
-      image: docker.io/redhat/ubi8
+      image: registry.access.redhat.com/ubi8/ubi:8.7-1112 
+#     image: docker.io/redhat/ubi8
       sourceMapping: /projects
       volumeMounts:
         - name: checode
