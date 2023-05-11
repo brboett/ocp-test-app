@@ -2,33 +2,22 @@ schemaVersion: 2.1.0
 metadata:
   name: ocp-test-app
   namespace: hb88273pa-devspaces-uupokf
-attributes:
-  controller.devfile.io/devworkspace-config:
-    name: devworkspace-config
-    namespace: openshift-operators
-  controller.devfile.io/storage-type: per-user
 projects:
   - git:
       remotes:
         origin: 'https://github.com/brboett/ocp-test-app.git'
     name: ocp-test-app
-components:  
+components:
+  - name: universal-developer-image
     container:
       command:
-        - /checode/entrypoint-volume.sh
-      cpuLimit: 500m
-      cpuRequest: 30m           
+        - /checode/entrypoint-volume.sh               
       image: >-
-        registry.redhat.io/devspaces/udi-rhel8@sha256:99ff1b5c541855e4cf368816c4bcdcdc86d32304023f72c4443213a4032ef05b
-      memoryLimit: 1024Mi
-      memoryRequest: 256Mi
+        registry.redhat.io/devspaces/udi-rhel8@sha256:99ff1b5c541855e4cf368816c4bcdcdc86d32304023f72c4443213a4032ef05b      
       sourceMapping: /projects
       volumeMounts:
         - name: checode
           path: /checode
-    name: universal-developer-image
-
-
 
 
 # schemaVersion: 2.1.0
