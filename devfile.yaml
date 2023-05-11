@@ -14,10 +14,10 @@ components:
     container:
      image: registry.redhat.io/devspaces/udi-rhel8@sha256:9f3eccea7b9a67491d2c23952441544bfc8d2ea6c53322313928bc5c8a9248d5
 commands:
-  - id: packages
+  - id: build
     exec:
-      component: tree
-      commandLine: 'yum install -y tree unzip'
+      component: packages
+      commandLine: 'yum install -y tree unzip '
 
 
 # schemaVersion: 2.1.0
