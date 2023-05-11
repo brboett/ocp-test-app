@@ -12,7 +12,7 @@ projects:
 components:
   - name: devspaces-component-demo
     container:
-     image: registry.access.redhat.com/ubi8/ubi:latest
+     image: registry.redhat.io/devspaces/udi-rhel8@sha256:9f3eccea7b9a67491d2c23952441544bfc8d2ea6c53322313928bc5c8a9248d5
      memoryLimit: 512M
      memoryRequest: 256M
      command: ['sleep', 'infinity']
