@@ -9,15 +9,22 @@ RUN dnf -y update && \
     dnf clean all && \
     rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
-RUN useradd user; \
-echo -e "user:1:999\nuser:1001:64535" > /etc/subuid; \
-echo -e "user:1:999\nuser:1001:64535" > /etc/subgid; 
+# Tweaks to make rootless buildah work
+
+RUN touch /etc/subgid /etc/subuid  && \
+    chmod g=u /etc/subgid /etc/subuid /etc/passwd  && \
+    echo user:165536:65536 /etc/subuid  && \
+    echo user:165536:65536 > /etc/subgid
+
+RUN useradd podman; \
+echo -e "podman:1:999\npodman:1001:64535" > /etc/subuid; \
+echo -e "podman:1:999\npodman:1001:64535" > /etc/subgid; 
 
 ADD containers.conf /etc/containers/containers.conf
-ADD podman-containers.conf /home/user/.config/containers/containers.conf 
+ADD podman-containers.conf /home/podman/.config/containers/containers.conf 
 
-RUN mkdir -p /home/user/.local/share/containers && \
-    chown user:user -R /home/user && \
+RUN mkdir -p /home/podman/.local/share/containers && \
+    chown podman:podman -R /home/podman && \
     chmod 644 /etc/containers/containers.conf
 
 COPY build.sh /tmp
@@ -31,7 +38,7 @@ RUN cd /tmp && \
 # Note VOLUME options must always happen after the chown call above
 # RUN commands can not modify existing volumes
 VOLUME /var/lib/containers
-VOLUME /home/user/.local/share/containers 
+VOLUME /home/podman/.local/share/containers 
 
 RUN mkdir -p /var/lib/shared/overlay-images \
              /var/lib/shared/overlay-layers \
