@@ -12,36 +12,5 @@ projects:
 components:
   - name: devspaces-component-demo
     container:
-     image: registry.redhat.io/devspaces/udi-rhel8@sha256:9f3eccea7b9a67491d2c23952441544bfc8d2ea6c53322313928bc5c8a9248d5
-commands:
-  - id: build
-    exec:
-      component: packages
-      commandLine: 'yum install -y tree unzip telnet'
-    # exec:
-    #   component: applications
-    #   workingDir: "${PROJECTS_ROOT}"
-    #   commandLine: 'chmod +x build.sh && ./build.sh'
+     image: quay.io/brboett/ocp-test:latest
 
-
-# schemaVersion: 2.1.0
-# metadata:
-#   name: ocp-test-app
-#   namespace: hb88273pa-devspaces-uupokf
-# projects:
-#   - git:
-#       remotes:
-#         origin: 'https://github.com/brboett/ocp-test-app.git'
-#     name: ocp-test-app
-# components:
-#   - name: universal-developer-image
-#     container:
-#       command:
-#         - /checode/entrypoint-volume.sh               
-# #     image: dockerregistry-np.hban.us/devops/devspaces/ubi8:1.0
-#       image: registry.access.redhat.com/ubi8/ubi:8.7-1112 
-# #     image: docker.io/redhat/ubi8
-#       sourceMapping: /projects
-#       volumeMounts:
-#         - name: checode
-#           path: /checode

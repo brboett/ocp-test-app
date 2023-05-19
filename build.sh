@@ -16,9 +16,9 @@ unzip terraform_1.4.6_linux_amd64.zip
 mv terraform /usr/bin
 rm -rf terraform_1.4.6_linux_amd64.zip
  
-# Install Podman
-echo "Installing Podman..."
-yum install podman -y
+# Install Container Tools
+echo "Installing Container Tools..."
+yum module install container-tools:rhel8 -y
 
 # Clean up
 yum clean all -y
