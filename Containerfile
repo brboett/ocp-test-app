@@ -10,8 +10,8 @@ RUN dnf -y update && \
     rm -rf /var/cache /var/log/dnf* /var/log/yum.*
 
 RUN useradd podman; \
-echo -e "podman:1:999\npodman:1001:64536" > /etc/subuid; \
-echo -e "podman:1:999\npodman:1001:64536" > /etc/subgid; 
+echo -e "podman:1:999\npodman:1001:64535" > /etc/subuid; \
+echo -e "podman:1:999\npodman:1001:64535" > /etc/subgid; 
 
 ADD containers.conf /etc/containers/containers.conf
 ADD podman-containers.conf /home/podman/.config/containers/containers.conf 
@@ -20,7 +20,7 @@ RUN mkdir -p /home/podman/.local/share/containers && \
     chown podman:podman -R /home/podman && \
     chmod 644 /etc/containers/containers.conf
 
-RUN usermod --add-subuids 100000-165535 --add-subgids 100000-165535 user
+# RUN usermod --add-subuids 100000-165536 --add-subgids 100000-165536 user
 
 COPY build.sh /tmp
 
