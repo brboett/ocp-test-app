@@ -11,10 +11,10 @@ RUN dnf -y update && \
 
 # Tweaks to make rootless buildah work
 
-RUN touch /etc/subgid /etc/subuid  && \
-    chmod g=u /etc/subgid /etc/subuid /etc/passwd  && \
-    echo user:10001:10001 /etc/subuid  && \
-    echo user:10001:10001 > /etc/subgid
+# RUN touch /etc/subgid /etc/subuid  && \
+#     chmod g=u /etc/subgid /etc/subuid /etc/passwd  && \
+#     echo user:10001:10001 /etc/subuid  && \
+#     echo user:10001:10001 > /etc/subgid
 
 # RUN useradd podman; \
 # echo -e "podman:1:999\npodman:1001:64535" > /etc/subuid; \
@@ -29,7 +29,7 @@ RUN mkdir -p /home/user/.local/share/containers && \
 
 RUN usermod --add-subgids 10000-75535 user
 RUN usermod --add-subuids 10000-75535 user
-RUN podman system migrate
+# RUN podman system migrate
 
 COPY build.sh /tmp
 
@@ -38,6 +38,16 @@ WORKDIR /tmp
 RUN cd /tmp && \
     chmod +x build.sh && \
     ./build.sh
+
+# Copy & modify the defaults to provide reference if runtime changes needed.
+
+# Changes here are required for running with fuse-overlay storage inside container.
+
+RUN sed -e 's|^mount_program|mount_program|g' \
+           -e '/additionalimage.*/a "/var/lib/shared",' \
+           -e 's|^mountopt[[:space:]]*=.*$|mountopt = "nodev,fsync=0"|g' \
+           /usr/share/containers/storage.conf \
+           > /etc/containers/storage.conf
 
 # Note VOLUME options must always happen after the chown call above
 # RUN commands can not modify existing volumes
