@@ -12,6 +12,5 @@ projects:
 components:
   - name: devspaces-component-demo
     container:
-     image: quay.io/podman/stable
-    #  image: quay.io/brboett/ocp-test:1.7
+      image: quay.io/brboett/ocp-test:1.9
 
