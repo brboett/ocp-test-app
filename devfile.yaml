@@ -12,5 +12,5 @@ projects:
 components:
   - name: devspaces-component-demo
     container:
-     image: quay.io/brboett/ocp-test:1.2
+     image: quay.io/brboett/ocp-test:1.5
 
