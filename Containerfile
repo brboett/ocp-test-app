@@ -13,8 +13,8 @@ RUN dnf -y update && \
 
 RUN touch /etc/subgid /etc/subuid  && \
     chmod g=u /etc/subgid /etc/subuid /etc/passwd  && \
-    echo user:10001:65536 /etc/subuid  && \
-    echo user:10001:65536 > /etc/subgid
+    echo user:10001:10001 /etc/subuid  && \
+    echo user:10001:10001 > /etc/subgid
 
 RUN useradd podman; \
 echo -e "podman:1:999\npodman:1001:64535" > /etc/subuid; \
