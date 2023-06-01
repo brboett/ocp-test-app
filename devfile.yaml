@@ -2,13 +2,13 @@ schemaVersion: 2.1.0
 metadata:
   name: devspaces-demo
   version: 1.0.0
-# projects:
-#   - name: devspaces-project-demo
-#     git:
-#       remotes:
-#         origin: "https://github.com/brboett/ocp-test-app.git"
-#       checkoutFrom:
-#         revision: main
+projects:
+  - name: devspaces-project-demo
+    git:
+      remotes:
+        origin: "https://github.com/brboett/ocp-test-app.git"
+      checkoutFrom:
+        revision: main
 # components:
 #   - name: devspaces-component-demo
 #     container:
