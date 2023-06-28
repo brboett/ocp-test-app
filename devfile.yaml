@@ -11,6 +11,6 @@ projects:
 components:
   - name: devtools
     container:
-      image: quay.io/brboett/ocp-ds-test:1.0
+      image: quay.io/brboett/ocp-ds-test:3.0
       memoryLimit: 2Gi
       memoryRequest: 256Mi
