@@ -9,8 +9,8 @@ projects:
         origin: "https://github.com/brboett/ocp-test-app.git"
       checkoutFrom:
         revision: main
-# components:
-#   - name: devspaces-component-demo
-#     container:
-#       image: quay.io/brboett/ocp-test:2.0
+components:
+  - name: devspaces-component-demo
+    container:
+      image: quay.io/brboett/ocp-ds-test:1.0
 
