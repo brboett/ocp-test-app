@@ -9,8 +9,9 @@ projects:
         origin: "https://github.com/brboett/ocp-test-app.git"
       checkoutFrom:
         revision: main
-# components:
-#   - name: devspaces-component-demo
-#     container:
-#       image: quay.io/brboett/ocp-ds-test:1.0
-
+components:
+  - name: devtools
+    container:
+      image: quay.io/brboett/ocp-ds-test:1.0
+      memoryLimit: 2Gi
+      memoryRequest: 256Mi
