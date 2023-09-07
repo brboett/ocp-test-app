@@ -2,15 +2,8 @@ schemaVersion: 2.1.0
 metadata:
   name: devspaces-demo
   version: 1.0.0
-# projects:
-#   - name: devspaces-project-demo
-#     git:
-#       remotes:
-#         origin: "https://github.com/brboett/ocp-test-app.git"
-#       checkoutFrom:
-#         revision: main
-# components:
-#   - name: devspaces-component-demo
-#     container:
-#       image: quay.io/brboett/ocp-test:2.0
+components:
+  - name: devspaces-component-demo
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
 
