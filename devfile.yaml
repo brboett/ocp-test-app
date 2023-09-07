@@ -3,7 +3,9 @@ metadata:
   name: devspaces-demo
   version: 1.0.0
 components:
-  - name: devspaces-component-demo
+  - name: devtools
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
+      memoryLimit: 2Gi
+      memoryRequest: 256Mi
 
